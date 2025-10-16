@@ -5,32 +5,30 @@
  */
 public class Cavallo extends Thread{
     private String name;
-    private int lentezza;
-    public Cavallo(String name, int lentezza){
+    private int distanza;
+    int incremento = 5;
+    public Cavallo(String name, int distanza){
         super();
         this.name = name;
-        this.lentezza = lentezza;
+        this.distanza = distanza;
     }
 
-    public int getLentezza() {
-        return lentezza;
+    public int getDistanza() {
+        return distanza;
     }
 
-    public void setLentezza(int lentezza) {
-        this.lentezza = lentezza;
+    public void setDistanza(int distanza) {
+        this.distanza = distanza;
     }
 
     @Override
     public void run() {
         System.out.println("Cavallo " + name + " comincia il suo galoppo");
-        for (int i = 1; i <= 10; i++) {
-            try {
-                sleep(lentezza);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        for (int i = 1; i <= distanza; i+=incremento) {
+            if (distanza - i < 5 && distanza - i != 0){
+                incremento = distanza-i;
             }
             System.out.println(name + " cavalca - passo " + i);
-
         }
     }
 }
